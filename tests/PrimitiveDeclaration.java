@@ -1,1 +1,1 @@
-primitive i;
+primitive __i__;

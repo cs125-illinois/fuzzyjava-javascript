@@ -18,6 +18,11 @@
   "license": "MIT",
   "dependencies": {
     "antlr4": "^4.7.0",
-    "minimist": "^1.2.0"
+    "camelcase": "^4.1.0",
+    "cycle": "^1.0.3",
+    "debug": "^3.1.0",
+    "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
+    "random-words": "0.0.1"
   }
 }
