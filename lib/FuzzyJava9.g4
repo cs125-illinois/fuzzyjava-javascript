@@ -75,6 +75,7 @@ literal
 	|	CharacterLiteral
 	|	StringLiteral
 	|	NullLiteral
+  | '__random__'
 	;
 
 /*
