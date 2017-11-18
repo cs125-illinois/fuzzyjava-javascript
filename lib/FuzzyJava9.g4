@@ -419,7 +419,7 @@ unannType
 unannPrimitiveType
 	:	numericType
 	|	'boolean'
-  | 'primitive'
+  | '__primitive__'
 	;
 
 unannReferenceType

@@ -19,6 +19,7 @@
   "dependencies": {
     "antlr4": "^4.7.0",
     "camelcase": "^4.1.0",
+    "chai": "^4.1.2",
     "cycle": "^1.0.3",
     "debug": "^3.1.0",
     "lodash": "^4.17.4",
