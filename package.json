@@ -24,6 +24,7 @@
     "debug": "^3.1.0",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
+    "random-char": "^1.0.4",
     "random-float": "^1.0.0",
     "random-int": "^1.0.0",
     "random-unicode": "^2.0.0",
