@@ -1,2 +1,2 @@
-__primitive__ __i__ = __random__;
-char __i__ = __random__;
+__primitive__ __a__ = __random__;
+__a__ __y__ = __random__;

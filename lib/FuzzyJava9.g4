@@ -414,8 +414,13 @@ variableInitializer
 
 unannType
 	:	unannPrimitiveType
+  | unannBackReferenceType
 	|	unannReferenceType
 	;
+
+unannBackReferenceType
+  : Identifier
+  ;
 
 unannPrimitiveType
 	:	numericType
