@@ -1,3 +1,4 @@
 __primitive__ __i__;
-int __y__;
 __primitive__ newVariable;
+int __y__;
+__y__ __j__, __k__;
