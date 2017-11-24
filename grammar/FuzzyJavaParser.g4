@@ -281,6 +281,7 @@ literal
     | STRING_LITERAL
     | BOOL_LITERAL
     | NULL_LITERAL
+    | QUESTION
     ;
 
 integerLiteral
