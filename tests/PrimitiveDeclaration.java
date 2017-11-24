@@ -1,4 +1,5 @@
-primitive __i__, __j__;
+primitive ?i, ?j;
 primitive newVariable;
-double __y__;
-__y__ __j__, __k__;
+double ?y;
+?i ?k;
+?y ?l;

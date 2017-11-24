@@ -228,7 +228,7 @@ variableDeclarator
     ;
 
 variableDeclaratorId
-    : IDENTIFIER ('[' ']')*
+    : (IDENTIFIER | FUZZY_IDENTIFIER) ('[' ']')*
     ;
 
 variableInitializer
@@ -614,6 +614,6 @@ arguments
 
 // FuzzyJava extensions
 backReferenceType
-    : IDENTIFIER
+    : FUZZY_IDENTIFIER
     ;
 
