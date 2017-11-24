@@ -527,6 +527,7 @@ primary
     | SUPER
     | literal
     | IDENTIFIER
+    | FUZZY_IDENTIFIER
     | typeTypeOrVoid '.' CLASS
     | nonWildcardTypeArguments (explicitGenericInvocationSuffix | THIS arguments)
     ;
@@ -593,6 +594,7 @@ primitiveType
     | FLOAT
     | DOUBLE
     | RANDOM_PRIMITIVE
+    | RANDOM_NUMERIC
     ;
 
 typeArguments

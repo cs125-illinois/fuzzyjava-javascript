@@ -31,7 +31,8 @@ lexer grammar FuzzyJavaLexer;
 
 // Fuzzy Keywords
 
-RANDOM_PRIMITIVE: 'primitive';
+RANDOM_PRIMITIVE: '?primitive';
+RANDOM_NUMERIC: '?numeric';
 
 // Keywords
 
