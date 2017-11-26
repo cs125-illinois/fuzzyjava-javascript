@@ -282,6 +282,7 @@ literal
     | BOOL_LITERAL
     | NULL_LITERAL
     | QUESTION
+    | QUESTION primitiveType
     ;
 
 integerLiteral
@@ -581,7 +582,12 @@ typeList
     ;
 
 typeType
-    : annotation? (backReferenceType | classOrInterfaceType | primitiveType) ('[' ']')*
+    : annotation?
+    (backReferenceType
+    | classOrInterfaceType
+    | primitiveType
+    | fuzzyPrimitiveType)
+    ('[' ']')*
     ;
 
 primitiveType
@@ -593,7 +599,10 @@ primitiveType
     | LONG
     | FLOAT
     | DOUBLE
-    | RANDOM_PRIMITIVE
+    ;
+
+fuzzyPrimitiveType
+    : RANDOM_PRIMITIVE
     | RANDOM_NUMERIC
     ;
 

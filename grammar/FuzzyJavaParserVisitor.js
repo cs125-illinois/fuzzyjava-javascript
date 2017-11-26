@@ -612,6 +612,12 @@ FuzzyJavaParserVisitor.prototype.visitPrimitiveType = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FuzzyJavaParser#fuzzyPrimitiveType.
+FuzzyJavaParserVisitor.prototype.visitFuzzyPrimitiveType = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FuzzyJavaParser#typeArguments.
 FuzzyJavaParserVisitor.prototype.visitTypeArguments = function(ctx) {
   return this.visitChildren(ctx);
