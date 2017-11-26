@@ -1,3 +1,19 @@
+types:
+  primitives:
+    - short
+    - int
+    - long
+    - float
+    - double
+    - boolean
+    - byte
+    - char
+  numerics:
+    - short
+    - int
+    - long
+    - float
+    - double
 limits:
   byte:
     max: 127

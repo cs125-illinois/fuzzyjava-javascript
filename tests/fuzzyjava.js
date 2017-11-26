@@ -5,8 +5,8 @@ const FuzzyJava = require('../lib/fuzzyjava')
 const _ = require('lodash')
 const expect = require('chai').expect
 
-const numericPattern = `short|int|long|float|double`
-const primitivePattern = `${numericPattern}|boolean|byte|char`
+const numericPattern = FuzzyJava.defaults.types.numerics.join('|')
+const primitivePattern = FuzzyJava.defaults.types.primitives.join('|')
 const javaVariablePattern = `[a-zA-Z][a-zA-Z0-9]*`;
 
 describe('fuzzyjava', () => {
@@ -48,12 +48,43 @@ describe('fuzzyjava', () => {
 
     it('should support backreference types', () => {
       for (let count = 0; count < 32; count++) {
-        let type = _.sample(['int', 'long', 'char'])
         let output = new FuzzyJava(`?primitive ?i;\n?i ?j;`).generate().validate().output
         let pattern = Array(2).fill(`^(${primitivePattern}) (${javaVariablePattern});$`).join('\\n')
         let match = new RegExp(pattern, 'm').exec(output)
         expect(match).to.not.be.null
         expect(match[1]).to.equal(match[3])
+      }
+    }).timeout(500).slow(250)
+  })
+
+  describe('initializations', () => {
+    it('should support random primitive initialization', () => {
+      let fuzzy = new FuzzyJava(`?primitive i;`)
+      for (let count = 0; count < 32; count++) {
+        let type = _.sample(FuzzyJava.defaults.types.primitives)
+        let output = new FuzzyJava(`${type} i = ?;`).generate().validate().output
+        let match = new RegExp(`^(${primitivePattern}) i = (.+?);`).exec(output)
+        expect(match).to.not.be.null
+        switch (match[1]) {
+          case 'byte':
+          case 'short':
+          case 'int':
+          case 'long':
+            expect(new RegExp(`^[0-9-]+$`).test(match[2].trim())).to.be.true
+            break
+          case 'double':
+          case 'float':
+            expect(new RegExp(`^[.0-9-]+$`).test(match[2].trim())).to.be.true
+            break
+          case 'boolean':
+            expect(['true', 'false']).to.include(match[2].trim())
+            break
+          case 'char':
+            expect(new RegExp(`^'.*?'$`).test(match[2].trim())).to.be.true
+            break
+          default:
+            expect.fail()
+        }
       }
     }).timeout(500).slow(250)
   })
