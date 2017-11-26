@@ -45,5 +45,12 @@ describe('fuzzyjava', () => {
         expect(new RegExp(`^${type} (${javaVariablePattern});$`).test(output)).to.be.true
       }
     }).timeout(500).slow(250)
+
+    it('should support backreference types', () => {
+      for (let count = 0; count < 32; count++) {
+        let type = _.sample(['int', 'long', 'char'])
+        let output = new FuzzyJava(`?primitive ?i; ?i ?j;`).generate().validate().output
+      }
+    }).timeout(500).slow(250)
   })
 })
