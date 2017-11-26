@@ -12,7 +12,8 @@
   },
   "main": "./fuzzyjava.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/**/**js"
+    "test": "./node_modules/.bin/mocha tests/**/**js",
+    "grammars": "./scripts/generateGrammars.js"
   },
   "author": "",
   "license": "MIT",
