@@ -1,3 +1,23 @@
+limits:
+  byte:
+    max: 127
+    min: -128
+  short:
+    max: 32767
+    min: -32768
+  int:
+    max: Math.pow(2, 31) - 1
+    min: -Math.pow(2, 31)
+  long:
+    max: Math.pow(2, 63) - 1
+    min: -Math.pow(2, 63)
+  float:
+    max: 32767
+    min: -32768
+  double:
+    max: 32767
+    min: -32768
+topLevel: blockStatements
 reserved:
   - abstract
   - assert
