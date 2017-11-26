@@ -20,6 +20,7 @@
     "antlr4": "^4.7.0",
     "camelcase": "^4.1.0",
     "chai": "^4.1.2",
+    "child-process-promise": "^2.2.1",
     "cycle": "^1.0.3",
     "debug": "^3.1.0",
     "json-stringify-pretty-compact": "^1.0.4",
@@ -30,5 +31,11 @@
     "random-int": "^1.0.0",
     "random-unicode": "^2.0.0",
     "random-words": "0.0.1"
+  },
+  "devDependencies": {
+    "app-root-dir": "^1.0.2",
+    "chai": "^4.1.2",
+    "fs-compare": "0.0.4",
+    "mocha": "^4.0.1"
   }
 }
