@@ -1,5 +1,7 @@
 ?primitive ?i, ?j;
+/*
 ?numeric newVariable;
 double ?y;
 ?i ?k;
 ?y ?l;
+*/
