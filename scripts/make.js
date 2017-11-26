@@ -52,3 +52,9 @@ ifNewer(_.map(['JavaLexer.g4', 'JavaParser.g4'], input => {
       })
     })
   })
+
+ifNewer(['./lib/fuzzyjava.yaml'], ['./lib/fuzzyjava.json'], () => {
+  childProcess.exec(`./node_modules/.bin/yaml2json lib/fuzzyjava.yaml > lib/fuzzyjava.json`, {
+    cwd: appRootDir
+  })
+})
