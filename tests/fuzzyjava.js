@@ -92,16 +92,23 @@ describe('fuzzyjava', () => {
         let output = new FuzzyJava(`?primitive i = ?;`).generate().validate().output
         let match = new RegExp(`^(${primitivePattern}) i = (.+?);`).exec(output)
         expect(match).to.not.be.null
+        let value;
         switch (match[1]) {
           case 'byte':
           case 'short':
           case 'int':
           case 'long':
-            expect(new RegExp(`^[0-9-]+$`).test(match[2].trim())).to.be.true
+            value = new RegExp(`^[0-9-]+$`).exec(match[2].trim())
+            expect(value).to.not.be.null
+            expect(parseInt(value)).to.be.at.least(eval(FuzzyJava.defaults.limits[match[1]].min))
+            expect(parseInt(value)).to.be.below(eval(FuzzyJava.defaults.limits[match[1]].max))
             break
           case 'double':
           case 'float':
-            expect(new RegExp(`^[.0-9-]+$`).test(match[2].trim())).to.be.true
+            value = new RegExp(`^[0-9-.]+$`).exec(match[2].trim())
+            expect(value).to.not.be.null
+            expect(parseFloat(value)).to.be.at.least(eval(FuzzyJava.defaults.limits[match[1]].min))
+            expect(parseFloat(value)).to.be.below(eval(FuzzyJava.defaults.limits[match[1]].max))
             break
           case 'boolean':
             expect(['true', 'false']).to.include(match[2].trim())
