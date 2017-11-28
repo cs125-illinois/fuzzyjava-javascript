@@ -228,7 +228,7 @@ variableDeclarator
     ;
 
 variableDeclaratorId
-    : (IDENTIFIER | FUZZY_IDENTIFIER) ('[' ']')*
+    : (IDENTIFIER | QUESTION IDENTIFIER) ('[' ']')*
     ;
 
 variableInitializer
@@ -528,7 +528,6 @@ primary
     | SUPER
     | literal
     | IDENTIFIER
-    | FUZZY_IDENTIFIER
     | typeTypeOrVoid '.' CLASS
     | nonWildcardTypeArguments (explicitGenericInvocationSuffix | THIS arguments)
     ;
@@ -626,6 +625,6 @@ arguments
 
 // FuzzyJava extensions
 backReferenceType
-    : FUZZY_IDENTIFIER
+    : QUESTION IDENTIFIER
     ;
 

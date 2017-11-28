@@ -40,7 +40,7 @@ describe('fuzzyjava', () => {
 
     it('should support random variable names in declarations', () => {
       for (let count = 0; count < 32; count++) {
-        let type = _.sample(['int', 'long', 'char'])
+        let type = _.sample(FuzzyJava.defaults.types.primitives)
         let output = new FuzzyJava(`${type} ?i;`).generate().validate().output
         expect(new RegExp(`^${type} (${javaVariablePattern});$`).test(output)).to.be.true
       }
@@ -112,6 +112,16 @@ describe('fuzzyjava', () => {
           default:
             expect.fail()
         }
+      }
+    }).timeout(500).slow(250)
+
+    it('should support primitive random type-based initialization', () => {
+      for (let count = 0; count < 32; count++) {
+        let variableType = _.sample(['long', 'int', 'short', 'byte'])
+        let valueType = _.sample(['long', 'int', 'short', 'byte'])
+        let output = new FuzzyJava(`${variableType} i = ?${valueType};`).generate().output
+        let match = new RegExp(`^(${primitivePattern}) i = (.+?);`).exec(output)
+        expect(match).to.not.be.null
       }
     }).timeout(500).slow(250)
   })

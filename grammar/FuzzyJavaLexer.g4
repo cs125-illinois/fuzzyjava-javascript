@@ -178,7 +178,6 @@ LINE_COMMENT:       '//' ~[\r\n]*    -> channel(HIDDEN);
 
 // Identifiers
 
-FUZZY_IDENTIFIER:   QUESTION Letter LetterOrDigit*;
 IDENTIFIER:         Letter LetterOrDigit*;
 
 // Fragment rules
