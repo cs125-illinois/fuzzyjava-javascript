@@ -12,8 +12,9 @@
   },
   "main": "./fuzzyjava.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/**/**js",
-    "make": "./scripts/make.js"
+    "test": "mocha tests/**/**js",
+    "make": "./scripts/make.js",
+    "dist": "webpack"
   },
   "author": "",
   "license": "MIT",
@@ -21,7 +22,6 @@
     "antlr4": "^4.7.0",
     "camelcase": "^4.1.0",
     "chai": "^4.1.2",
-    "child-process-promise": "^2.2.1",
     "cycle": "^1.0.3",
     "debug": "^3.1.0",
     "json-stringify-pretty-compact": "^1.0.4",
@@ -36,8 +36,18 @@
   },
   "devDependencies": {
     "app-root-dir": "^1.0.2",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
     "chai": "^4.1.2",
+    "child-process-promise": "^2.2.1",
     "fs-compare": "0.0.4",
-    "mocha": "^4.0.1"
+    "http-server": "^0.10.0",
+    "mocha": "^4.0.1",
+    "rollupify": "^0.4.0",
+    "uglifyify": "^4.0.5",
+    "uglifyjs-webpack-plugin": "^1.1.1",
+    "webpack": "^3.8.1"
   }
 }
