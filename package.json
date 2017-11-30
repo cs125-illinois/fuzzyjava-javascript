@@ -15,7 +15,7 @@
     "test": "mocha tests/**/**js",
     "make": "./scripts/make.js",
     "dist": "webpack",
-    "run": "http-server dist/"
+    "serve": "http-server docs/"
   },
   "author": "",
   "license": "MIT",

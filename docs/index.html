@@ -30,6 +30,20 @@
       <div class="row mt-5">
         <div class="col-1"></div>
         <div class="col-8">
+          <h1>FuzzyJava</h1>
+          <p>
+            FuzzyJava is a Java code fuzzer. It's designed to allow a single
+            fuzzed code snippet to generate many similar code snippets, with
+            different variable names, structure, or behavior.
+          </p>
+          <p>
+            <span class="text-danger">FuzzyJava is a prototype.</span> Many
+            things don't work properly yet. It's based on a modified
+            <a href="https://github.com/antlr/antlr4">ANTLR4</a> grammar. It can
+            parse almost all of Java 8 properly, but doesn't currently generate
+            nice output in all cases. Fuzzing doesn't work properly either in
+            many cases outside of the ones outlined below.
+          </p>
           <h2>Fuzzy Types</h2>
           <p>
             FuzzyJava supports fuzzy types, at present just
@@ -55,7 +69,9 @@ Or use the button below</pre>
         </div>
       </div>
 
-      <div class="row mt-5">
+      <hr />
+
+      <div class="row mt-3">
         <div class="col-1"></div>
         <div class="col-8">
           <h2>Backreference Types</h2>
@@ -80,7 +96,72 @@ Or use the button below</pre>
           <button type="button" class="btn btn-success">Compile</button>
         </div>
       </div>
+
+      <hr />
+
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-8">
+          <h2>Fuzzy Variable Names</h2>
+          <p>
+            FuzzyJava can also fuzz variable names. Fuzzed variables can be
+            reused through the block. Backreference types also work properly
+            with fuzzed types.
+          </p>
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center example">
+        <div class="col-5">
+          <textarea class="fuzzyjava">?primitive ?i;
+=?i ?j;
+?j = ?i;</textarea>
+        </div>
+        <div class="col-5">
+          <div class="output">
+            <pre>Press Control-S in the edit window to compile
+Or use the button below</pre>
+          </div>
+        </div>
+        <div class="col-12 mt-2 text-center">
+          <button type="button" class="btn btn-success">Compile</button>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-8">
+          <h2>Fuzzy Literals</h2>
+          <p>
+            FuzzyJava can fuzz literals. A single <code>?</code>
+            will output a random literal that inherits the type of the variable
+            it is being initialized. A <code>?short</code> will output a random
+            literal of type <code>short</code>. Reassignment doesn't work
+            yet&mdash;but shouldn't be hard. (Famous last words.)
+          </p>
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center example">
+        <div class="col-5">
+          <textarea class="fuzzyjava">int ?i = ?;
+int ?j = ?short;
+?primitive ?k = ?;</textarea>
+        </div>
+        <div class="col-5">
+          <div class="output">
+            <pre>Press Control-S in the edit window to compile
+Or use the button below</pre>
+          </div>
+        </div>
+        <div class="col-12 mt-2 text-center">
+          <button type="button" class="btn btn-success">Compile</button>
+        </div>
+      </div>
     </div>
+  <a href="https://github.com/cs125-illinois/fuzzyjava">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+  </a>
 
     <!-- Bootstrap JavaScript dependencies -->
     <!-- Note that we need the non-slim jQuery to be able to issue post requests. -->

@@ -10,7 +10,7 @@ const primitivePattern = FuzzyJava.defaults.types.primitives.join('|')
 const javaVariablePattern = `[a-zA-Z][a-zA-Z0-9]*`;
 
 describe('fuzzyjava', () => {
-  describe('declarations', () => {
+  describe('declaration', () => {
     it('should support random primitive declarations', () => {
       let fuzzy = new FuzzyJava(`?primitive i;`)
       for (let count = 0; count < 32; count++) {
@@ -64,7 +64,7 @@ describe('fuzzyjava', () => {
     }).timeout(500).slow(250)
   })
 
-  describe('initializations', () => {
+  describe('initialization', () => {
     it('should support primitive random initialization', () => {
       for (let count = 0; count < 32; count++) {
         let type = _.sample(FuzzyJava.defaults.types.primitives)
@@ -136,6 +136,23 @@ describe('fuzzyjava', () => {
         let output = new FuzzyJava(`${variableType} i = ?${valueType};`).generate().output
         let match = new RegExp(`^(${primitivePattern}) i = (.+?);`).exec(output)
         expect(match).to.not.be.null
+      }
+    }).timeout(500).slow(250)
+  })
+
+  describe('assignment', () => {
+    it('should support fuzzy assignment', () => {
+      for (let count = 0; count < 32; count++) {
+        let type = _.sample(FuzzyJava.defaults.types.primitives)
+        let output = new FuzzyJava(`?primitive ?i;\n=?i ?j;\n?j = ?i;`).generate().output
+        let pattern = Array(2).fill(`^(${primitivePattern}) (${javaVariablePattern});$`)
+        pattern.push(`^(${javaVariablePattern}) = (${javaVariablePattern});$`)
+        pattern = pattern.join('\\n')
+        let match = new RegExp(pattern, 'm').exec(output)
+        expect(match).to.not.be.null
+        expect(match[1]).to.equal(match[3])
+        expect(match[2]).to.equal(match[6])
+        expect(match[4]).to.equal(match[5])
       }
     }).timeout(500).slow(250)
   })

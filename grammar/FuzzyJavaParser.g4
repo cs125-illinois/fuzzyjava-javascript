@@ -528,6 +528,7 @@ primary
     | SUPER
     | literal
     | IDENTIFIER
+    | QUESTION IDENTIFIER
     | typeTypeOrVoid '.' CLASS
     | nonWildcardTypeArguments (explicitGenericInvocationSuffix | THIS arguments)
     ;
