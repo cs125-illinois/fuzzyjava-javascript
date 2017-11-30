@@ -625,6 +625,7 @@ arguments
 
 // FuzzyJava extensions
 backReferenceType
-    : QUESTION IDENTIFIER
+    : ASSIGN IDENTIFIER
+    | ASSIGN QUESTION IDENTIFIER
     ;
 

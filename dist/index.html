@@ -3,61 +3,99 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-  <!-- CodeMirror default CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.css">
+    <!-- CodeMirror default CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.css">
 
-  <!-- Inconolata font -->
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <!-- Inconolata font -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
-  <!-- Our own small stylesheet -->
-  <link rel="stylesheet" href="index.css">
+    <!-- Our own small stylesheet -->
+    <link rel="stylesheet" href="index.css">
 
-  <!-- FontAwesome fonts for buttons -->
-  <script src="https://use.fontawesome.com/8ed8bfa954.js"></script>
-</head>
+    <!-- FontAwesome fonts for buttons -->
+    <script src="https://use.fontawesome.com/8ed8bfa954.js"></script>
+  </head>
 
-<body>
+  <body>
 
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-12">
-        <div id="output">
-          <pre>&gt; Hit Control-S to run your Java code...</pre>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-1"></div>
+        <div class="col-8">
+          <h2>Fuzzy Types</h2>
+          <p>
+            FuzzyJava supports fuzzy types, at present just
+            <code>?primitive</code>, which expands to a random primitive type,
+            and <code>?numeric</code>, which expands to a random numeric
+            primitive type.
+          </p>
         </div>
       </div>
-      <div class="col-12">
-        <textarea id="input">// Here's a stupid little example
-static long factorial(long n) {
-  if (n == 1) {
-    return 1;
-  } else {
-    return n * factorial(n - 1);
-  }
-}
-System.out.println(factorial(20));</textarea>
+      <div class="row mt-2 justify-content-center example">
+        <div class="col-5">
+          <textarea class="fuzzyjava">?primitive i;
+?numeric j;</textarea>
+        </div>
+        <div class="col-5">
+          <div class="output">
+            <pre>Press Control-S in the edit window to compile
+Or use the button below</pre>
+          </div>
+        </div>
+        <div class="col-12 mt-2 text-center">
+          <button type="button" class="btn btn-success">Compile</button>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-1"></div>
+        <div class="col-8">
+          <h2>Backreference Types</h2>
+          <p>
+            Backreference types allow you to create multiple randomly-typed
+            variables with the same type.
+          </p>
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center example">
+        <div class="col-5">
+          <textarea class="fuzzyjava">?primitive first;
+=first second;</textarea>
+        </div>
+        <div class="col-5">
+          <div class="output">
+            <pre>Press Control-S in the edit window to compile
+Or use the button below</pre>
+          </div>
+        </div>
+        <div class="col-12 mt-2 text-center">
+          <button type="button" class="btn btn-success">Compile</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap JavaScript dependencies -->
-  <!-- Note that we need the non-slim jQuery to be able to issue post requests. -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.js"></script>
-  <script
+    <!-- Bootstrap JavaScript dependencies -->
+    <!-- Note that we need the non-slim jQuery to be able to issue post requests. -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.js"></script>
+    <script
     src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/mode/clike/clike.min.js"></script>
 
   <!-- FuzzyJava library. -->
   <script src="fuzzyjava.js"></script>
+
+  <!-- Initialization. -->
+  <script src="index.js"></script>
 </body>
 
 </html>

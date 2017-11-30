@@ -4,9 +4,15 @@
 #output {
   background-color: #202020;
 }
-#output pre {
+.CodeMirror {
+  height: auto
+}
+.output {
+  height: 100%;
+}
+.output pre {
   background-color: #202020;
-  height: 10rem;
+  height: 100%;
   font-family: 'Inconsolata', monospace;
   color: #F5F5F5;
   overflow-y: scroll;

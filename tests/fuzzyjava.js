@@ -48,7 +48,14 @@ describe('fuzzyjava', () => {
 
     it('should support backreference types', () => {
       for (let count = 0; count < 32; count++) {
-        let output = new FuzzyJava(`?primitive ?i;\n?i ?j;`).generate().validate().output
+        let output = new FuzzyJava(`?primitive ?i;\n=?i ?j;`).generate().validate().output
+        let pattern = Array(2).fill(`^(${primitivePattern}) (${javaVariablePattern});$`).join('\\n')
+        let match = new RegExp(pattern, 'm').exec(output)
+        expect(match).to.not.be.null
+        expect(match[1]).to.equal(match[3])
+      }
+      for (let count = 0; count < 32; count++) {
+        let output = new FuzzyJava(`?primitive i;\n=i ?j;`).generate().validate().output
         let pattern = Array(2).fill(`^(${primitivePattern}) (${javaVariablePattern});$`).join('\\n')
         let match = new RegExp(pattern, 'm').exec(output)
         expect(match).to.not.be.null
