@@ -5,7 +5,10 @@
   background-color: #202020;
 }
 .CodeMirror {
-  height: auto
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  height: auto;
+  font-size: 14px;
 }
 .output {
   height: 100%;
@@ -14,10 +17,11 @@
   background-color: #202020;
   height: 100%;
   font-family: 'Inconsolata', monospace;
+  font-size: 14px;
   color: #F5F5F5;
   overflow-y: scroll;
   word-wrap: normal;
   white-space: pre;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   padding-left: 1rem;
 }

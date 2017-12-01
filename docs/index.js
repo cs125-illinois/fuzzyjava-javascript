@@ -12,7 +12,7 @@ $(function () {
     })
     let compile = () => {
       try {
-        let output = new fuzzyjava(source.getValue()).generate().validate().output
+        let output = "// try compiling again\n" + new fuzzyjava(source.getValue()).generate().validate().output
         $(elem).find('.output > pre').text(output.trim())
       } catch (err) {
         $(elem).find('.output > pre')
