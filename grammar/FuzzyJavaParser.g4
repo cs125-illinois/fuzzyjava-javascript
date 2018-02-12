@@ -494,7 +494,7 @@ expression
     | expression bop='||' expression
     | expression bop='?' expression ':' expression
     | <assoc=right> expression
-      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
+      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=' | RANDOM_ASSIGN)
       expression
     | lambdaExpression // Java8
 
@@ -629,4 +629,3 @@ backReferenceType
     : ASSIGN IDENTIFIER
     | ASSIGN QUESTION IDENTIFIER
     ;
-

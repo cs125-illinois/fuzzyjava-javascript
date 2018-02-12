@@ -33,6 +33,7 @@ lexer grammar FuzzyJavaLexer;
 
 RANDOM_PRIMITIVE: '?primitive';
 RANDOM_NUMERIC: '?numeric';
+RANDOM_ASSIGN: '?=';
 
 // Keywords
 
