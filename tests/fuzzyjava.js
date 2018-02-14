@@ -8,6 +8,7 @@ const expect = require('chai').expect
 const numericPattern = FuzzyJava.defaults.types.numerics.join('|')
 const primitivePattern = FuzzyJava.defaults.types.primitives.join('|')
 const javaVariablePattern = `[a-zA-Z][a-zA-Z0-9]*`;
+const assignmentPattern = `[+-\/*%]=`
 
 describe('fuzzyjava', () => {
   describe('declaration', () => {
@@ -153,6 +154,17 @@ describe('fuzzyjava', () => {
         expect(match[1]).to.equal(match[3])
         expect(match[2]).to.equal(match[6])
         expect(match[4]).to.equal(match[5])
+      }
+    }).timeout(500).slow(250)
+
+    it('should support valid fuzzy compound assignments', () => {
+      for (let count = 0; count < 32; count++) {
+        let output = new FuzzyJava(`?numeric i = 0;\ni ?= 5;`).generate().output
+        let pattern = [`^(${primitivePattern}) i = 0;`]
+        pattern.push(`i ${assignmentPattern} 5;$`)
+        pattern = pattern.join('\\n')
+        let match = new RegExp(pattern, 'm').exec(output)
+        expect(match).to.not.be.null
       }
     }).timeout(500).slow(250)
   })
