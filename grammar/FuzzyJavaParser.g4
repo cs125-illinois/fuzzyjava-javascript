@@ -492,9 +492,10 @@ expression
     | expression bop='|' expression
     | expression bop='&&' expression
     | expression bop='||' expression
+    | expression bop=RANDOM_ASSIGN expression
     | expression bop='?' expression ':' expression
     | <assoc=right> expression
-      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=' | RANDOM_ASSIGN)
+      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
       expression
     | lambdaExpression // Java8
 
