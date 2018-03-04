@@ -137,8 +137,7 @@ Or use the button below</pre>
             FuzzyJava can fuzz literals. A single <code>?</code>
             will output a random literal that inherits the type of the variable
             it is being initialized. A <code>?short</code> will output a random
-            literal of type <code>short</code>. Reassignment doesn't work
-            yet&mdash;but shouldn't be hard. (Famous last words.)
+            literal of type <code>short</code>.
           </p>
         </div>
       </div>
@@ -149,7 +148,8 @@ Or use the button below</pre>
         <div class="col-5">
           <textarea class="fuzzyjava">int ?i = ?;
 int ?j = ?short;
-?primitive ?k = ?;</textarea>
+?primitive ?k = ?;
+?k = ?;</textarea>
         </div>
         <div class="col-5">
           <div class="output">
