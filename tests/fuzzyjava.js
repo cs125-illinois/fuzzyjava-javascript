@@ -100,33 +100,7 @@ describe('fuzzyjava', () => {
         let output = new FuzzyJava(`?primitive i = ?;`).generate().validate().output
         let match = new RegExp(`^(${primitivePattern}) i = (.+?);`).exec(output)
         expect(match).to.not.be.null
-        let value;
-        switch (match[1]) {
-          case 'byte':
-          case 'short':
-          case 'int':
-          case 'long':
-            value = new RegExp(`^[0-9-]+$`).exec(match[2].trim())
-            expect(value).to.not.be.null
-            expect(parseInt(value)).to.be.at.least(eval(FuzzyJava.defaults.limits[match[1]].min))
-            expect(parseInt(value)).to.be.below(eval(FuzzyJava.defaults.limits[match[1]].max))
-            break
-          case 'double':
-          case 'float':
-            value = new RegExp(`^[0-9-.]+$`).exec(match[2].trim())
-            expect(value).to.not.be.null
-            expect(parseFloat(value)).to.be.at.least(eval(FuzzyJava.defaults.limits[match[1]].min))
-            expect(parseFloat(value)).to.be.below(eval(FuzzyJava.defaults.limits[match[1]].max))
-            break
-          case 'boolean':
-            expect(['true', 'false']).to.include(match[2].trim())
-            break
-          case 'char':
-            expect(new RegExp(`^'.*?'$`).test(match[2].trim())).to.be.true
-            break
-          default:
-            expect.fail()
-        }
+        expectValidType(match[1], match[2]);
       }
     }).timeout(500).slow(250)
 
@@ -157,6 +131,20 @@ describe('fuzzyjava', () => {
       }
     }).timeout(500).slow(250)
 
+    it('should support assignment on non-random primitives', () => {
+      for (let count = 0; count < 32; count++) {
+        let type = _.sample(FuzzyJava.defaults.types.primitives)
+        let output = new FuzzyJava(`${type} i = ?;\ni = ?;`).generate().output
+        let pattern = new Array(`^(${primitivePattern}) i = (.+?);`)
+        pattern.push(`i = (.+?);$`)
+        pattern = pattern.join('\\n')
+        let match = new RegExp(pattern, 'm').exec(output)
+        expect(match).to.not.be.null
+        expectValidType(match[1], match[2]);
+        expectValidType(match[1], match[3]);
+      }
+    }).timeout(500).slow(250)
+
     it('should support valid fuzzy compound assignments', () => {
       for (let count = 0; count < 32; count++) {
         let output = new FuzzyJava(`?numeric i = 0;\ni ?= 5;`).generate().output
@@ -169,3 +157,33 @@ describe('fuzzyjava', () => {
     }).timeout(500).slow(250)
   })
 })
+
+let expectValidType = (type, value) => {
+  let match;
+  switch (type) {
+    case 'byte':
+    case 'short':
+    case 'int':
+    case 'long':
+      match = new RegExp(`^[0-9-]+$`).exec(value.trim())
+      expect(match).to.not.be.null
+      expect(parseInt(match)).to.be.at.least(eval(FuzzyJava.defaults.limits[type].min))
+      expect(parseInt(match)).to.be.below(eval(FuzzyJava.defaults.limits[type].max))
+      break
+    case 'double':
+    case 'float':
+      match = new RegExp(`^[0-9-.]+$`).exec(value.trim())
+      expect(match).to.not.be.null
+      expect(parseFloat(match)).to.be.at.least(eval(FuzzyJava.defaults.limits[type].min))
+      expect(parseFloat(match)).to.be.below(eval(FuzzyJava.defaults.limits[type].max))
+      break
+    case 'boolean':
+      expect(['true', 'false']).to.include(value.trim())
+      break
+    case 'char':
+      expect(new RegExp(`^'.*?'$`).test(value.trim())).to.be.true
+      break
+    default:
+      expect.fail()
+  }
+};
